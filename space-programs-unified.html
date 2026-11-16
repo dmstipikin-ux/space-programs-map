@@ -289,7 +289,7 @@ svg { display: block; }
 .mod-concepts .src a { color: var(--c-artemis); word-break: break-word; font-size: 12px; }
 .mod-concepts .src-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 4px 0 0; }
 .mod-concepts .goals .src { margin-top: 4px; }
-.lede a, .foot a { color: var(--c-artemis); }
+.lede a { color: var(--c-artemis); }
 
 .mod-concepts .tlbox { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; overflow-x: auto; }
 #timeline { width: 100%; min-width: 900px; height: auto; }
@@ -491,8 +491,6 @@ svg { display: block; }
   z-index: 30;
   transform: translate(-50%, calc(-100% - 12px));
 }
-.foot { color: var(--muted); font-size: 12.5px; display: flex; flex-direction: column; gap: 6px; max-width: 104ch; border-top: 1px solid var(--line); padding-top: 18px; }
-.foot p { margin: 0; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" integrity="sha384-su5kReKyYlIFrI62mbQRKXHzFobMa7BHp1cK6julLPbnYcCW9NIZKJiTODjLPeDh" crossorigin="anonymous"></script>
@@ -558,11 +556,6 @@ svg { display: block; }
     <div class="keyrow" id="goalKey"></div>
     <div class="bodies" id="bodies"></div>
   </div>
-
-  <footer class="foot">
-    <p><b style="color:var(--ink)">Как отобран топ-5 и как обновлять новости.</b> Программа «Чанъэ» (№2) и пилотируемая высадка КНР до 2030 (№3) объединены в одну карточку лунной программы КНР с двумя отдельными подсекциями новостей (<code>DATA.news.change</code> и <code>DATA.news.crewed</code>); пятое место занимает SpaceX Starship (<code>DATA.news.spacex = []</code>). Для добавления новой новости достаточно дописать объект <code>{ date, title, text, url }</code> внутри неисполняемой JSON-капсулы <code>&lt;script id="space-data-capsule" type="application/json"&gt;</code> и обновить поле <code>updated</code>, не меняя вёрстку и хеш скрипта.</p>
-    <p>Локальные иллюстрации подключаются из папки <code>img/</code> рядом с файлом (<code>moon.jpg</code>, <code>mars.jpg</code>, <code>probe.jpg</code>, <code>saturn.jpg</code>, <code>earth.jpg</code>, <code>leo.jpg</code>, <code>cis.jpg</code>, <code>deep.jpg</code>, <code>inter.jpg</code>); при отсутствии папки <code>img/</code> все схемы, карточки и новости продолжают работать штатно.</p>
-  </footer>
 </div>
 <script id="space-data-capsule" type="application/json">
 /* === DATA_START === */
