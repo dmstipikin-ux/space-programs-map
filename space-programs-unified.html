@@ -405,6 +405,14 @@ svg { display: block; }
 .mod-concepts .tag.c-frozen { color: #e66bb0; border-color: #7d3460; }
 .mod-concepts .tag.c-done { color: #e9edf6; border-color: #5a6a8f; }
 .mod-concepts .keyrow { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); align-items: center; }
+.mark-legend { border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 14px; }
+.mark-legend h2 { font-family: var(--f-display); font-weight: 600; font-size: 18px; margin: 0; }
+.mark-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 32px; }
+.mark-legend h3 { font-size: 13px; font-weight: 600; margin: 0 0 8px; color: var(--muted); }
+.mark-legend ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.mark-legend li { display: flex; gap: 10px; align-items: baseline; font-size: 13.5px; line-height: 1.4; }
+.mark-legend li span.tag { flex: none; }
+@media (max-width: 760px) { .mark-cols { grid-template-columns: 1fr; } }
 .mod-concepts .axis-note { font-size: 11.5px; color: var(--muted); }
 .mod-concepts .race { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .mod-concepts .race div { display: flex; flex-direction: column; gap: 4px; }
@@ -551,12 +559,37 @@ svg { display: block; }
   </div>
 
   <div class="screen mod-concepts" id="screen-goals" hidden>
-    <p class="screen-lede">Заявленные цели человечества по небесным телам: <b>кто, что и к какому году</b> собирается сделать. Цели разделены по типу (высадка, база, город, ресурсы и энергия, образцы, автоматика) и по степени обязательности: <b>официальный план</b> с бюджетом или датой, <b>заявление</b> лидера или компании без бюджета, <b>заморожено</b>. Под каждой целью — ссылка на официальное описание.</p>
+    <p class="screen-lede">Заявленные цели человечества по небесным телам: <b>кто, что и к какому году</b> собирается сделать. Цели разделены по типу (высадка, база, город, ресурсы и энергия, образцы, автоматика) и по тому, насколько это обязательство: <b>официальная цель</b>, <b>заявление</b>, <b>заморожено</b> или <b>выполнено</b>. Что означает каждая пометка — в легенде внизу экрана. Под каждой целью — ссылка на официальное описание.</p>
     <div class="race" id="raceStrip"></div>
     <div class="keyrow" id="goalKey"></div>
     <div class="bodies" id="bodies"></div>
+    <section class="mark-legend" aria-labelledby="h-marks">
+      <h2 id="h-marks">Что означают пометки</h2>
+      <div class="mark-cols">
+        <div>
+          <h3>Тип цели</h3>
+          <ul>
+            <li><span class="tag k-landing">высадка</span> на поверхность садятся люди</li>
+            <li><span class="tag k-base">база</span> постоянная станция</li>
+            <li><span class="tag k-city">город</span> постоянное поселение</li>
+            <li><span class="tag k-robot">автоматика</span> цель выполняет беспилотный аппарат: зонд, ровер или винтокрыл</li>
+            <li><span class="tag k-sample">образцы</span> грунт привозят на Землю</li>
+            <li><span class="tag k-energy">ресурсы и энергия</span> добыча или энергетика на месте</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Насколько это обязательство</h3>
+          <ul>
+            <li><span class="tag c-plan">официальная цель</span> страна или агентство само объявило цель и назначило срок</li>
+            <li><span class="tag c-claim">заявление</span> слова лидера или компании: бюджета и утверждённой программы нет</li>
+            <li><span class="tag c-frozen">заморожено</span> программа была, но её остановили или предложили закрыть</li>
+            <li><span class="tag c-done">выполнено</span> цель уже достигнута</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </div>
-</div>
+      </div>
 <script id="space-data-capsule" type="application/json">
 /* === DATA_START === */
 {
@@ -2544,7 +2577,7 @@ svg { display: block; }
     "energy": "ресурсы и энергия"
   },
   "goalConf": {
-    "plan": "официальный план",
+    "plan": "официальная цель",
     "claim": "заявление",
     "frozen": "заморожено",
     "done": "выполнено"
