@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tjIX72tZzj1SG+SMCQStLA9MMLufrqggtZTRIw716cI=' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-HksIU430R+PG3enanNhCzxcG4970N8IAeppy9BLUuow=' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' file: data: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Карта космических программ и новости по ним</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -297,38 +297,7 @@ svg { display: block; }
 #timeline .lane-l { font-family: var(--f-display); font-size: 12px; font-weight: 600; fill: var(--ink); }
 #timeline .yr { font-family: var(--f-mono); font-size: 11px; }
 
-/* Full Per-Program News Blocks Below Each Top-5 Program */
-.news-dossier-list { display: flex; flex-direction: column; gap: 20px; }
-.prog-news-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--c, var(--accent));
-  border-radius: 12px;
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.prog-news-head {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 10px;
-}
-.prog-news-head h3 {
-  font-family: var(--f-display);
-  font-size: 17px;
-  font-weight: 600;
-  margin: 0;
-}
-.prog-news-meta {
-  font-family: var(--f-mono);
-  font-size: 12px;
-  color: var(--muted);
-}
+/* Per-Program News (dossier "Новости" tab) */
 .prog-news-subblock { display: flex; flex-direction: column; gap: 10px; }
 .prog-news-subhead {
   font-family: var(--f-mono);
@@ -574,14 +543,6 @@ svg { display: block; }
         <p>Закрашенная точка — выполнено, пустая — план. Вертикальная линия — сегодня.</p>
       </div>
       <div class="tlbox"><svg id="timeline" viewBox="0 0 1300 410" role="img" aria-label="Временная шкала ключевых этапов пяти программ"></svg></div>
-    </section>
-
-    <section aria-labelledby="h-news">
-      <div class="sec-head" style="margin-bottom:12px">
-        <h2 id="h-news">Официальные новости по топ-программам (полный список без сокращений)</h2>
-        <p>Все подтверждённые пресс-релизы из капсулы DATA.news · клик по заголовку открывает первоисточник</p>
-      </div>
-      <div class="news-dossier-list" id="programs-news-list"></div>
     </section>
   </div>
 
@@ -4186,27 +4147,6 @@ function renderProgramNews(container, items) {
       et.textContent = lab;
     });
   });
-
-  /* ---------- Full Per-Program News Blocks Below Top-5 ---------- */
-  const newsRoot = document.getElementById("programs-news-list");
-  HUBS.forEach(h => {
-    const cnt = hubNewsCount(h.id);
-    const bodyBox = dom("div", null);
-    renderNewsGroupsInto(bodyBox, h);
-    const card = dom("article", {
-      className: "prog-news-card",
-      id: "news-prog-" + h.id,
-      styleObj: { "--c": safeColor(h.color) }
-    },
-      dom("div", { className: "prog-news-head" },
-        dom("h3", null, `№${h.rank}. ${h.full}`),
-        dom("span", { className: "prog-news-meta" }, cnt > 0 ? `${cnt} официальных сообщений · ${h.who}` : `0 официальных сообщений · ${h.who}`)
-      ),
-      bodyBox
-    );
-    newsRoot.appendChild(card);
-  });
-
 
   function sourceList(pairs) {
     if (!Array.isArray(pairs) || !pairs.length) return null;
